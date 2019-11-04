@@ -1,5 +1,6 @@
 {
   "name": "react-drag-and-select",
+  "description": "React component to select multiple items with the mouse cursor",
   "version": "0.1.0",
   "main": "build/index.js",
   "scripts": {
