@@ -8,11 +8,11 @@ const boxesIntersect = (boxA: Box, boxB: Box) =>
   boxA.top <= boxB.top + boxB.height &&
   boxA.top + boxA.height >= boxB.top;
 
-const useSelectableByDragging = <Type extends HTMLElement>(): [
+const useSelectableByDragging = <RefType extends HTMLElement>(): [
   { selected: boolean },
-  RefObject<Type>
+  RefObject<RefType>
 ] => {
-  const itemRef = useRef<Type>(null);
+  const itemRef = useRef<RefType>(null);
   const { selectionBox } = useContext(DragSelectionContext);
   const [selected, setSelected] = useState(false);
 

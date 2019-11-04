@@ -6,16 +6,16 @@ A lightweight, fully-tested (unit and e2e test), TypeScript'd, React library (1 
 
 ## Features
 
-1. _No selected state management_ - Unlike [React Drag to Select](https://github.com/pablofierro/react-drag-select], this component does not managed if an item is selected. It's up to you to handle that. It only fires the hook once the item _becomes_ selected.
+1. **No selected state management** - Unlike [React Drag to Select](https://github.com/pablofierro/react-drag-select], this component does not managed if an item is selected. It's up to you to handle that. It only fires the hook once the item _becomes_ selected.
 
-2. _Supports deeply nested items_ - Unlike [React Drag to Select](https://github.com/pablofierro/react-drag-select], the items you are trying to select don't need to be immediate children of the parent HOC. As long as they have the `useSelectableByDragging` inside of them, and the
+2. **Supports deeply nested items** - Unlike [React Drag to Select](https://github.com/pablofierro/react-drag-select], the items you are trying to select don't need to be immediate children of the parent HOC. As long as they have the `useSelectableByDragging` inside of them, and the
 
 ## Setup
 
 1. Install dependency
 2. Add
 
-## Docs
+## API
 
 ### DragSelection
 
@@ -38,7 +38,7 @@ This is the hook used by any component that is a descendant of `<DragSelection>`
 It returns an array with 2 values:
 
 1. An object containing `selected` which indicates if the component is being selected at that moment
-2. A [refObject](https://reactjs.org/docs/hooks-reference.html#useref) which needs to be applied as the ref to the component you're trying to select
+2. A [refObject](https://reactjs.org/docs/hooks-reference.html#useref) which needs to be applied as the `ref` to the component you're trying to select
 
 #### Example
 
@@ -46,18 +46,6 @@ It returns an array with 2 values:
 const MyComponent: React.FC = () => {
   const [{ selected }, ref] = useSelectableByDragging<HTMLDivElement>();
 
-  return (
-    <div
-      {...{ ref }}
-      style={{
-        width: 100,
-        height: 100,
-        background: selected ? "blue" : "lightGray",
-        margin: 5,
-        borderRadius: 4
-      }}
-      className={selected ? "selected" : ""}
-    />
-  );
+  return <div {...{ ref }} />;
 };
 ```
