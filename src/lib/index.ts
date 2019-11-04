@@ -1,8 +1,7 @@
-import Example from './components/Example';
-import SecondExample from './components/SecondExample';
+import DragSelection from "./components/DragSelection";
 
-export default Example;
+import useSelectableByDragging from "./hooks/useSelectableByDragging";
 
-export {
-  SecondExample,
-};
+export default DragSelection;
+
+export { DragSelection, useSelectableByDragging };
