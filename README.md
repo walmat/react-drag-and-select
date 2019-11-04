@@ -40,6 +40,8 @@ It returns an array with 2 values:
 1. An object containing `selected` which indicates if the component is being selected at that moment
 2. A [refObject](https://reactjs.org/docs/hooks-reference.html#useref) which needs to be applied as the `ref` to the component you're trying to select
 
+> Note: For TypeScript users, you must pass in the first generic for `useSelectableByDragging`. This type must match the type of element you'll be applying the ref to (it gets passed to `useRef`).
+
 #### Example
 
 ```tsx
