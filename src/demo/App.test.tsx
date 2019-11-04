@@ -8,7 +8,7 @@ class PageObject {
 
     const page = await browser.newPage();
 
-    await page.goto("http://localhost:3030");
+    await page.goto("http://localhost:3000");
     await page.waitForSelector(".App");
 
     return { page, browser };
