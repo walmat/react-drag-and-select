@@ -46,6 +46,7 @@ It returns an array with 2 values:
 
 ```tsx
 const MyComponent: React.FC = () => {
+  // <HTMLDivElement> is used because the ref gets applied to a `div` below
   const [{ selected }, ref] = useSelectableByDragging<HTMLDivElement>();
 
   return <div {...{ ref }} />;
