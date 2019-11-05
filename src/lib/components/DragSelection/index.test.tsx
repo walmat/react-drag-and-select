@@ -1,16 +1,33 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import DragSelection from ".";
-import renderer from "react-test-renderer";
+import { mount } from "enzyme";
+import { configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<DragSelection />, div);
-  ReactDOM.unmountComponentAtNode(div);
+configure({ adapter: new Adapter() });
+
+it("renders the children", () => {
+  const wrapper = mount(<DragSelection>Hey, stranger</DragSelection>);
+
+  expect(wrapper.contains("Hey, stranger")).toBe(true);
 });
 
-it("works", () => {
-  const component = renderer.create(<DragSelection />);
-  let tree = component.toJSON();
-  expect(tree).toMatchSnapshot();
+it("renders the drag selection when a user clicks and drags", () => {
+  const wrapper = mount(
+    <DragSelection>
+      <p>hey</p>
+    </DragSelection>
+  );
+
+  wrapper.simulate("mousedown", {
+    pageX: 0,
+    pageY: 0
+  });
+
+  wrapper.simulate("mousemove", {
+    pageX: 20,
+    pageY: 20
+  });
+
+  expect(wrapper.find("div > .selection-border").length).toBe(1);
 });
