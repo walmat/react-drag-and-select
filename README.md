@@ -37,6 +37,13 @@ This is the hook used by any component that is a descendant of `<DragSelection>`
 
 It returns an array with 2 values:
 
+```tsx
+type UseSelectableByDraggingReturnType<RefType> = [
+  { selected: boolean },
+  RefObject<RefType>
+];
+```
+
 1. An object containing `selected` which indicates if the component is being selected at that moment
 2. A [refObject](https://reactjs.org/docs/hooks-reference.html#useref) which needs to be applied as the `ref` to the component you're trying to select
 
