@@ -27,3 +27,16 @@ it("renders the drag selection when a user clicks and drags", () => {
 
   expect(wrapper.find("div > .selection-border").length).toBe(1);
 });
+
+it("does not render the drag selection when a user clicks and drags outside of the element", () => {
+  const wrapper = mount(<DragSelection />);
+
+  document.dispatchEvent(new MouseEvent("mousedown"));
+
+  wrapper.simulate("mousemove", {
+    pageX: 20,
+    pageY: 20
+  });
+
+  expect(wrapper.find("div > .selection-border").length).toBe(0);
+});
