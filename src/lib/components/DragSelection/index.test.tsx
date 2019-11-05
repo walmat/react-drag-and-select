@@ -13,11 +13,7 @@ it("renders the children", () => {
 });
 
 it("renders the drag selection when a user clicks and drags", () => {
-  const wrapper = mount(
-    <DragSelection>
-      <p>hey</p>
-    </DragSelection>
-  );
+  const wrapper = mount(<DragSelection />);
 
   wrapper.simulate("mousedown", {
     pageX: 0,
