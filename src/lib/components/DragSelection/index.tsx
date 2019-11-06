@@ -3,6 +3,7 @@ import "./index.css";
 import { DragSelectionContext } from "./context";
 import { SelectionBox, Point } from "./types";
 import { calculateSelectionBox } from "../../utils/boxes";
+import { createPortal } from "react-dom";
 
 const DragSelection: React.FC = ({ children }) => {
   const [startPoint, setStartPoint] = useState<null | Point>(null);
@@ -65,9 +66,12 @@ const DragSelection: React.FC = ({ children }) => {
         {children}
       </DragSelectionContext.Provider>
 
-      {startPoint && endPoint && (
-        <div className="selection-border" style={selectionBox || {}} />
-      )}
+      {startPoint &&
+        endPoint &&
+        createPortal(
+          <div className="selection-border" style={selectionBox || {}} />,
+          document.body
+        )}
     </div>
   );
 };

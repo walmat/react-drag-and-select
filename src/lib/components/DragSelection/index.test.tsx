@@ -6,15 +6,23 @@ import Adapter from "enzyme-adapter-react-16";
 
 configure({ adapter: new Adapter() });
 
-it("renders the children", () => {
-  const wrapper = mount(<DragSelection>Hey, stranger</DragSelection>);
+let wrapper = mount(<DragSelection>Hey, stranger</DragSelection>);
 
+beforeEach(() => {
+  wrapper = mount(<DragSelection>Hey, stranger</DragSelection>);
+});
+
+afterEach(() => {
+  if (wrapper) {
+    wrapper.unmount();
+  }
+});
+
+it("renders the children", () => {
   expect(wrapper.contains("Hey, stranger")).toBe(true);
 });
 
 it("renders the drag selection when a user clicks and drags", () => {
-  const wrapper = mount(<DragSelection />);
-
   wrapper.simulate("mousedown", {
     pageX: 0,
     pageY: 0
@@ -25,18 +33,18 @@ it("renders the drag selection when a user clicks and drags", () => {
     pageY: 20
   });
 
-  expect(wrapper.find("div > .selection-border").length).toBe(1);
+  expect(document.querySelector(".selection-border")).toBeTruthy();
 });
 
 it("does not render the drag selection when a user clicks and drags outside of the element", () => {
-  const wrapper = mount(<DragSelection />);
-
   document.dispatchEvent(new MouseEvent("mousedown"));
 
-  wrapper.simulate("mousemove", {
-    pageX: 20,
-    pageY: 20
-  });
+  document.dispatchEvent(
+    new MouseEvent("mousemove", {
+      movementX: 20,
+      movementY: 20
+    })
+  );
 
-  expect(wrapper.find("div > .selection-border").length).toBe(0);
+  expect(document.querySelector(".selection-border")).toBeFalsy();
 });
