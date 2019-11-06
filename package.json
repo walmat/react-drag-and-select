@@ -1,7 +1,7 @@
 {
-  "name": "react-drag-and-select",
+  "name": "react-drag-n-select",
   "description": "React component to select multiple items with the mouse cursor",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "main": "build/index.js",
   "scripts": {
     "start": "node scripts/start.js",
