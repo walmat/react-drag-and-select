@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./index.css";
 import { DragSelectionContext } from "./context";
 import { SelectionBox, Point } from "./types";
 import { calculateSelectionBox } from "../../utils/boxes";
@@ -69,7 +68,15 @@ const DragSelection: React.FC = ({ children }) => {
       {startPoint &&
         endPoint &&
         createPortal(
-          <div className="selection-border" style={selectionBox || {}} />,
+          <div
+            data-selection-box
+            style={{
+              background: `rgba(0, 162, 255, 0.4)`,
+              position: `absolute`,
+              zIndex: 99,
+              ...(selectionBox || {})
+            }}
+          />,
           document.body
         )}
     </div>

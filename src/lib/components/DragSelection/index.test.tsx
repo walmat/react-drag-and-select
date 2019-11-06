@@ -33,7 +33,7 @@ it("renders the drag selection when a user clicks and drags", () => {
     pageY: 20
   });
 
-  expect(document.querySelector(".selection-border")).toBeTruthy();
+  expect(document.querySelector("[data-selection-box]")).toBeTruthy();
 });
 
 it("does not render the drag selection when a user clicks and drags outside of the element", () => {
@@ -46,5 +46,5 @@ it("does not render the drag selection when a user clicks and drags outside of t
     })
   );
 
-  expect(document.querySelector(".selection-border")).toBeFalsy();
+  expect(document.querySelector("[data-selection-box]")).toBeFalsy();
 });
