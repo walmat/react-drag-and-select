@@ -33,22 +33,29 @@ const DragSelection: React.FC<DragSelectionProps> = ({ children, parent }) => {
       return;
     }
 
-    const parentOffsetX = parent.offsetLeft;
-    const parentOffsetY = parent.offsetTop;
+    const parentOffsetX = parent.scrollLeft;
+    const parentOffsetY = parent.scrollTop;
 
     setEndPoint({
-      x: e.pageX - parentOffsetX,
-      y: e.pageY - parentOffsetY,
+      x: e.nativeEvent.offsetX,
+      y: e.nativeEvent.offsetY,
     });
   };
 
   const onMouseDown = (e: React.MouseEvent) => {
-    const parentOffsetX = parent.offsetLeft;
-    const parentOffsetY = parent.offsetTop;
+    const parentOffsetX = parent.scrollLeft;
+    const parentOffsetY = parent.scrollTop;
+
+    console.log("e :>> ", e);
+
+    console.group("mouseDown");
+    console.log("parent.offsetTop :>> ", parent.offsetTop);
+    console.log("parent.scrollTop :>> ", parent.scrollTop);
+    console.groupEnd();
 
     setStartPoint({
-      x: e.pageX - parentOffsetX,
-      y: e.pageY - parentOffsetY,
+      x: e.nativeEvent.offsetX,
+      y: e.nativeEvent.offsetY,
     });
   };
 
