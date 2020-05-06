@@ -10,6 +10,8 @@ A lightweight, fully-tested (unit and e2e test), TypeScript'd, React library (1 
 
 2. **Supports deeply nested items** - Unlike [React Drag to Select](https://github.com/pablofierro/react-drag-select], the items you are trying to select don't need to be immediate children of the parent HOC. As long as they have the `useSelectableByDragging` inside of them, and the
 
+3. **Supports virtualization** - Unlike [React Drag to Select](https://github.com/pablofierro/react-drag-select], our library can support virtualized lists as well!
+
 ## Setup
 
 1. Install dependency
