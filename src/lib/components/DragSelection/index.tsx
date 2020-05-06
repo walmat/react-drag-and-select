@@ -4,7 +4,11 @@ import { SelectionBox, Point } from "./types";
 import { calculateSelectionBox } from "../../utils/boxes";
 import { createPortal } from "react-dom";
 
-const DragSelection: React.FC = ({ children }) => {
+interface DragSelectionProps {
+  parent: HTMLElement;
+}
+
+const DragSelection: React.FC<DragSelectionProps> = ({ children, parent }) => {
   const [startPoint, setStartPoint] = useState<null | Point>(null);
   const [endPoint, setEndPoint] = useState<null | Point>(null);
   const [selectionBox, setSelectionBox] = useState<null | SelectionBox>(null);
@@ -29,16 +33,22 @@ const DragSelection: React.FC = ({ children }) => {
       return;
     }
 
+    const parentOffsetX = parent.offsetLeft;
+    const parentOffsetY = parent.offsetTop;
+
     setEndPoint({
-      x: e.pageX,
-      y: e.pageY
+      x: e.pageX - parentOffsetX,
+      y: e.pageY - parentOffsetY,
     });
   };
 
   const onMouseDown = (e: React.MouseEvent) => {
+    const parentOffsetX = parent.offsetLeft;
+    const parentOffsetY = parent.offsetTop;
+
     setStartPoint({
-      x: e.pageX,
-      y: e.pageY
+      x: e.pageX - parentOffsetX,
+      y: e.pageY - parentOffsetY,
     });
   };
 
@@ -47,7 +57,7 @@ const DragSelection: React.FC = ({ children }) => {
       setSelectionBox(
         calculateSelectionBox({
           startPoint,
-          endPoint
+          endPoint,
         })
       );
     } else {
@@ -59,7 +69,7 @@ const DragSelection: React.FC = ({ children }) => {
     <div {...{ onMouseMove, onMouseDown }}>
       <DragSelectionContext.Provider
         value={{
-          selectionBox
+          selectionBox,
         }}
       >
         {children}
@@ -74,10 +84,10 @@ const DragSelection: React.FC = ({ children }) => {
               background: `rgba(0, 162, 255, 0.4)`,
               position: `absolute`,
               zIndex: 99,
-              ...(selectionBox || {})
+              ...(selectionBox || {}),
             }}
           />,
-          document.body
+          parent || document.body
         )}
     </div>
   );
