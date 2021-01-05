@@ -16,6 +16,10 @@ body {
   box-sizing: border-box;
 }
 
+.Test {
+  background-color: red;
+}
+
 #root {
   display: flex;
   flex: 1;

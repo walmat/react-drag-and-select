@@ -24,7 +24,7 @@ const App: React.FC = () => (
     className="App"
     style={{ flex: 1, display: "flex", flexDirection: "column" }}
   >
-    <DragSelection>
+    <DragSelection className="Test">
       <Item />
       <Item />
       <Item />
