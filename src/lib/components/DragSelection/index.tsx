@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+
 import { DragSelectionContext } from "./context";
 import { SelectionBox, Point } from "./types";
 import { calculateSelectionBox } from "../../utils/boxes";
-import { createPortal } from "react-dom";
 
-const DragSelection: React.FC = ({ children }) => {
+const DragSelection: React.FC = ({ children, ...props }) => {
   const [startPoint, setStartPoint] = useState<null | Point>(null);
   const [endPoint, setEndPoint] = useState<null | Point>(null);
   const [selectionBox, setSelectionBox] = useState<null | SelectionBox>(null);
@@ -56,7 +57,7 @@ const DragSelection: React.FC = ({ children }) => {
   }, [endPoint, startPoint]);
 
   return (
-    <div {...{ onMouseMove, onMouseDown }}>
+    <div {...props} {...{ onMouseMove, onMouseDown }}>
       <DragSelectionContext.Provider
         value={{
           selectionBox
